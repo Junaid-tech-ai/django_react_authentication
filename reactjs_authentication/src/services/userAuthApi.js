@@ -13,6 +13,7 @@ export const userAuthApi = createApi({
           body: user,
           headers: {
             'Content-type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
           }
         }
       }
