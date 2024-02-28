@@ -8,6 +8,7 @@ const Registration = () => {
   const [server_error, setServerError] = useState({})
   const navigate = useNavigate();
   const [registerUser, { isLoading }] = useRegisterUserMutation()
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
