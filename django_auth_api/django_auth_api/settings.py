@@ -188,4 +188,10 @@ SIMPLE_JWT = {
 
 PASSWORD_RESET_TIMEOUT = 900          # 900 Sec = 15 Min
 
-CORS_ALLOWED_ORIGINS = ["*"]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Add this if needed for local development
+    "http://127.0.0.1:3000",   # Add this if needed for local development
+    "https://65dfbe449c4967850e43b7de--user-auth-techhunk.netlify.app",  # Add your Netlify app domain here
+]
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
