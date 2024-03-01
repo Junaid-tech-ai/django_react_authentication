@@ -149,6 +149,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, '../reactjs_authentication/build'),
+]
+
+# Set STATIC_ROOT to specify where Django will collect static files during deployment
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
@@ -188,7 +194,13 @@ SIMPLE_JWT = {
 
 PASSWORD_RESET_TIMEOUT = 900          # 900 Sec = 15 Min
 
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000",
+#     "http://127.0.0.1:3000",
+# ]
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    ""
 ]
