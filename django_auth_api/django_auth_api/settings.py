@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_zk=9yl=ul!po@_z-)wq&x4=&!(ons2(pogyu52+f7f37v3j$y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+DEBUG = os.environ.get('DEBUG', 'False') == 'False'
 ALLOWED_HOSTS = ["*"]
 
 
@@ -93,9 +93,9 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'mydb',
+            'NAME': 'authdb',
             'USER': 'postgres',
-            'PASSWORD': 'postgres',
+            'PASSWORD': 'root',
             'HOST': 'localhost',   # Or the IP address of your PostgreSQL server
             'PORT': '5432',        # Default PostgreSQL port
         }
@@ -201,6 +201,5 @@ PASSWORD_RESET_TIMEOUT = 900          # 900 Sec = 15 Min
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    ""
+    "http://127.0.0.1:3000"
 ]
