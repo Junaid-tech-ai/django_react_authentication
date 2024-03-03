@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 import os
-import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -87,19 +86,38 @@ WSGI_APPLICATION = 'django_auth_api.wsgi.application'
 # }
 
 
-if not DEBUG:
-    DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
-else:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+if os.environ.get('POSTGRES_NAME'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'authdb',
-            'USER': 'postgres',
-            'PASSWORD': 'root',
-            'HOST': 'localhost',   # Or the IP address of your PostgreSQL server
-            'PORT': '5432',        # Default PostgreSQL port
+            'NAME': os.environ.get('POSTGRES_NAME'),
+            'USER': os.environ.get('POSTGRES_USER'),
+            'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+            'HOST': 'db',
+            'PORT': 5432,
         }
     }
+
+# if not DEBUG:
+#     DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'NAME': 'authdb',
+#             'USER': 'postgres',
+#             'PASSWORD': 'root',
+#             'HOST': 'db',   # Or the IP address of your PostgreSQL server
+#             'PORT': '5432',        # Default PostgreSQL port
+#         }
+#     }
 
 # JWT ConfiguratDATABASES = {
 #     'default': {
@@ -150,9 +168,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, '../reactjs_authentication/build'),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, '../reactjs_authentication/build'),
+# ]
 
 # Set STATIC_ROOT to specify where Django will collect static files during deployment
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -194,12 +212,10 @@ SIMPLE_JWT = {
 
 PASSWORD_RESET_TIMEOUT = 900          # 900 Sec = 15 Min
 
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:3000",
-#     "http://127.0.0.1:3000",
-# ]
-
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "http://127.0.0.1:3000"
+    "http://localhost:3001",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:3001"
 ]
+CORS_ALLOW_ALL_ORIGINS = True

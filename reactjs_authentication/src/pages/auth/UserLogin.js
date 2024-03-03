@@ -21,7 +21,7 @@ const UserLogin = () => {
     const res = await loginUser(actualData)
     if (res.error) {
       // console.log(typeof (res.error.data.errors))
-      // console.log(res.error.data.errors)
+      console.log(res.error.data.errors)
       setServerError(res.error.data.errors)
     }
     if (res.data) {
@@ -40,7 +40,6 @@ const UserLogin = () => {
 
 
   return <>
-    {server_error.non_field_errors ? console.log(server_error.non_field_errors[0]) : ""}
     {server_error.email ? console.log(server_error.email[0]) : ""}
     {server_error.password ? console.log(server_error.password[0]) : ""}
     <Box component='form' noValidate sx={{ mt: 1 }} id='login-form' onSubmit={handleSubmit}>
@@ -52,7 +51,6 @@ const UserLogin = () => {
         {isLoading ? <CircularProgress /> : <Button type='submit' variant='contained' sx={{ mt: 3, mb: 2, px: 5 }}>Login</Button>}
       </Box>
       <NavLink to='/sendpasswordresetemail' >Forgot Password ?</NavLink>
-      {server_error.non_field_errors ? <Alert severity='error'>{server_error.non_field_errors[0]}</Alert> : ''}
     </Box>
   </>;
 };

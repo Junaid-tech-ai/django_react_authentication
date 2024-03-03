@@ -7,8 +7,18 @@ import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
 import { useSelector } from "react-redux";
+import cors from 'cors';
+
+const corsOptions = {
+   origin: 'http://localhost:3000',
+   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+   credentials: true,
+   optionsSuccessStatus: 204,
+};
+
 function App() {
   const { access_token } = useSelector(state => state.auth)
+  //useSelector(cors(corsOptions))
   return (
     <>
       <BrowserRouter>
