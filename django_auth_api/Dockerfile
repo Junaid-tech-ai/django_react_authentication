@@ -10,7 +10,9 @@ COPY requirements.txt /code/
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     build-essential \
-    libpq-dev && \
+    libpq-dev \
+    telnet \
+    postgresql-client && \
     pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt && \
     apt-get remove -y build-essential && \
